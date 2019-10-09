@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'HotMovieData.dart';
+import 'data/HotMovieData.dart';
+
 
 class HotMovieItemWidget extends StatefulWidget{
   
@@ -24,7 +25,7 @@ class HotMovieItemState extends State<HotMovieItemWidget>{
       padding:EdgeInsets.all(20),
       child: Row(
         children: <Widget>[
-          Image.network(widget.hotMovieData.images,width: 120,height:80,fit:BoxFit.cover),
+          Image.network(widget.hotMovieData.images.small,width: 120,height:80,fit:BoxFit.cover),
           Expanded(
             flex:1,
             child: 
@@ -41,10 +42,8 @@ class HotMovieItemState extends State<HotMovieItemWidget>{
                       widget.hotMovieData.rating.toString(),
                       style: TextStyle(fontSize: 14, color: Colors.black54),
                     ),
-                    Text('导演: ' + widget.hotMovieData.directors,
-                        style: TextStyle(fontSize: 14, color: Colors.black54)),
-                    Text('主演: ' + widget.hotMovieData.casts,
-                        style: TextStyle(fontSize: 14, color: Colors.black54)),
+                    Text('导演: ' + widget.hotMovieData.getDirectors(),style: TextStyle(fontSize: 14, color: Colors.black54)),
+                    Expanded(child: Text('主演: ' + widget.hotMovieData.getCasts(),style: TextStyle(fontSize: 14, color: Colors.black54))),
                   ],
               ),
             )
@@ -54,7 +53,7 @@ class HotMovieItemState extends State<HotMovieItemWidget>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(widget.hotMovieData.watchedPeople.toString()+'人看过',style: TextStyle(color: Colors.red,fontSize: 14),),
+                Text(widget.hotMovieData.collectCount.toString()+'人看过',style: TextStyle(color: Colors.red,fontSize: 14),),
                 OutlineButton(
                   child: Text('购票',style: TextStyle(fontSize: 16),),
                   color: Colors.red,

@@ -9,6 +9,8 @@ class HotWidget extends StatefulWidget {
 }
 
 class HotWidgetState extends State<HotWidget> {
+  String curCity = '苏州';
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +22,13 @@ class HotWidgetState extends State<HotWidget> {
           padding: EdgeInsets.only(left: 20, right: 20),
           child: Row(
             children: <Widget>[
-              Text('深圳',style: TextStyle(fontSize: 16)),
+              GestureDetector(
+                child:Text(curCity,style: TextStyle(fontSize: 16)),
+                onTap: (){
+                  Navigator.pushNamed(context, '/Citys',arguments: curCity);
+                },
+              ),
+              
               Icon(Icons.arrow_drop_down),
               Expanded(
                 flex: 1,
@@ -64,7 +72,7 @@ class HotWidgetState extends State<HotWidget> {
                   child: Container(
                     child:TabBarView(
                       children: <Widget>[
-                        HotMoviesListWidget(),
+                        HotMoviesListWidget(curCity),
                         Center(child: Text('电视'))
                       ],
                     ),
